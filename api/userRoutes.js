@@ -6,6 +6,24 @@ const knexConfig = require('../knexfile');
 
 const db = knex(knexConfig.development);
 
+//ADD NEW USER
+router.post('/', (req, res) => {
+    const user = req.body;
+
+    if(user.fullname && user.password && user.username) {
+        db.insert(user)
+        .into('users')
+        .then(id => {
+            res.status(201).json(id[0])
+        })
+        .catch(err => {
+            res.status(500).json({ error: err, message: 'User Could Not Be Added'})
+        })
+    } else {
+        res.status(400).json({ errorMessage: "Please provide text for the post." })
+    }
+})
+
 //GET USER by ID
 router.get('/:id', (req, res) => {
     db('users')
@@ -21,5 +39,8 @@ router.get('/:id', (req, res) => {
             res.status(500).json({ error: "The user information could not be retrieved." });
         })
 })
+
+//EDIT USER INFO
+
 
 module.exports = router;
