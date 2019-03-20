@@ -20,8 +20,19 @@ router.post('/', (req, res) => {
             res.status(500).json({ error: err, message: 'User Could Not Be Added'})
         })
     } else {
-        res.status(400).json({ message: "Please provide text for the post." })
+        res.status(400).json({ error: err, message: "Please provide text for the post." })
     }
+});
+
+//GET ALL USERS
+router.get('/', (req, res) => {
+    db('users')
+      .then(users => {
+          res.status(200).json(users);
+      })
+      .catch(err => {
+        res.status(404).json({ error: err, message: "Could not get Users" })
+      })
 })
 
 //GET USER by ID
