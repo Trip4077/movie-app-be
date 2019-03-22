@@ -3,19 +3,29 @@ const router = express.Router();
 
 const db = require('../data/models/favoritesModel');
 
-//Get User Favorites
+//Get All Favorites
 router.get('/', (req, res) => {
     db.getFavorites(res);
 })
 
 //Get User Favorites
-router.get('/:userid', (req, res) => {
-    db.getFavoritesByUserId(req.params.userid, res)
+router.get('/:username/:userid', (req, res) => {
+    db.getFavoritesByUserId(req.params.userid, res);
 })
 
-//Add new Favorite
+//Get Favorite By ID
+router.get('/:id', (req, res) => {
+    db.getFavoritesById(req.params.id, res);
+})
+
+//Add to Favorite List
 router.post('/', (req, res) => {
-    d
+    db.addFavorite(req.body, res);
+})
+
+//Delete Movie from Favorites
+router.delete('/:id', (req, res) => {
+    db.deleteFavorite(req.params.id, res);
 })
 
 module.exports = router;
