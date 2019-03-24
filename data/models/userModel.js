@@ -30,7 +30,7 @@ module.exports = {
 
     getUser: (id, res) => {
         const favorites = Fdb.getFavoritesById(id, res);
-        console.log(favorites.client)
+    
         return db.select('id', 'fullname', 'username', 'age')
                     .from('users')
                     .where({ id })
