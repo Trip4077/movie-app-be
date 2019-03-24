@@ -9,7 +9,7 @@ exports.seed = function(knex, Promise) {
           fullname: 'Bernard Johnson', 
           username: 'trip1701', 
           password: 'password', 
-          age: 26
+          age: 26,
         },
         {
           id: 2, 

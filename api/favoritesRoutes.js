@@ -10,6 +10,7 @@ router.get('/', (req, res) => {
 
 //Get User Favorites
 router.get('/:username/:userid', (req, res) => {
+    console.log('test')
     db.getFavoritesByUserId(req.params.userid, res);
 })
 

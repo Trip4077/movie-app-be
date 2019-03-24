@@ -4,9 +4,11 @@ exports.up = function(knex, Promise) {
       tbl.increments();
       tbl.string('date', 255)
          .notNullable()
-      tbl.string('time', 255)
+      tbl.string('readTime', 255)
          .notNullable()
-      tbl.string('info', 255)
+      tbl.string('compareTime', 255)
+         .notNullable()
+      tbl.string('title', 255)
          .notNullable()
       tbl.integer('user_id')
          .references('id')
