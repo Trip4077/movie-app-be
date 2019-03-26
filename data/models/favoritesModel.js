@@ -78,7 +78,7 @@ module.exports = {
                 }
                 })
                 .catch(err => {
-                res.status(500).json({ error: err, message: "The movie could not be deleted." });
+                    res.status(500).json({ error: err, message: "The movie could not be deleted." });
                 });
     }
 }

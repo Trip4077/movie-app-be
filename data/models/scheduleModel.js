@@ -35,6 +35,18 @@ module.exports = {
                  })
     },
 
+    editSchedule: (edit, id, res) => {
+        db('schedules')
+          .where({ id })
+          .update(edit)
+          .then(success => {
+              res.status(200).json(success);
+          })
+          .catch(err => {
+              res.status(500).json(err);
+          })
+    },
+
     deleteScheduled: (id, res) => {
         return db('schedules')
                  .where({ id })
