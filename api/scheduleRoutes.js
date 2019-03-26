@@ -7,6 +7,10 @@ router.post('/', (req, res) => {
     db.scheduleMovie(req.body, res);
 });
 
+router.get('/:username/:id', (req, res) => {
+    db.getUserSchedule(req.params.id, res);
+})
+
 router.delete('/:id', (req, res) => {
     db.deleteScheduled(req.params.id, res)
 })

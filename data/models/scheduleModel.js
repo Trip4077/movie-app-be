@@ -19,6 +19,22 @@ module.exports = {
         }
     },
 
+    getUserSchedule: (id, res) => {
+        return db.select('*')
+                 .from('schedules')
+                 .where('user_id', id)
+                 .then(schedule => {
+                     if(schedule.length) {
+                         res.status(200).json(schedule);
+                     } else {
+                         res.status(404).json({ message: `the schedule with user id:${id} could not be found` })
+                     }
+                 })
+                 .catch(err => {
+                     res.status(500).json(err);
+                 })
+    },
+
     deleteScheduled: (id, res) => {
         return db('schedules')
                  .where({ id })
