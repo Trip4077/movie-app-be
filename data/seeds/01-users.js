@@ -10,20 +10,23 @@ exports.seed = function(knex, Promise) {
           username: 'trip1701', 
           password: 'password', 
           age: 26,
+          number: '12764691994'
         },
         {
           id: 2, 
           fullname: 'Dranreb Johnson', 
           username: 'trip1702', 
           password: 'password', 
-          age: 30
+          age: 30,
+          number: '12764691994'
         },
         {
           id: 3, 
           fullname: 'Bernard Sonjohn', 
           username: 'trip1703', 
           password: 'password', 
-          age: 43
+          age: 43,
+          number: '12764691994'
         },
       ]);
     });
