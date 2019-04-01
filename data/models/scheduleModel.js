@@ -20,7 +20,7 @@ module.exports = {
     },
 
     getFullSchedule: res => {
-        return db.select('user_id', 'compareTime')
+        return db.select('*')
                 .from('schedules')
                 .then(schedules => {
                     res.status(200).json(schedules);

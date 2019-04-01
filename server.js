@@ -10,4 +10,12 @@ const server = express();
 server.use(express.json(), helmet(), cors(), logger('dev'));
 server.use('/api', routes);
 
+let intervalID;
+
+const compareCycle = () => {
+    intervalID = setInterval(() => {console.log('test')}, 5000); 
+}
+
+compareCycle()
+
 module.exports = server;
