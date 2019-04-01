@@ -19,6 +19,17 @@ module.exports = {
         }
     },
 
+    getFullSchedule: res => {
+        return db.select('user_id', 'compareTime')
+                .from('schedules')
+                .then(schedules => {
+                    res.status(200).json(schedules);
+                })
+                .catch(err => {
+                    res.status(500).json(err);
+                })
+    },
+
     getUserSchedule: (id, res) => {
         return db.select('*')
                  .from('schedules')

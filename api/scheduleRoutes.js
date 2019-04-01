@@ -5,28 +5,38 @@ const router = express.Router();
 
 const Nexmo = require('nexmo');
 const db = require('../data/models/scheduleModel');
-console.log(process.env.enter)
+
 const nexmoConfig = new Nexmo({
     apiKey: process.env.enter,
     apiSecret: process.env.shh
 }, { debuh: true })
 
+//Add movie to schedule
 router.post('/', (req, res) => {
     db.scheduleMovie(req.body, res);
 });
 
+//Get all scheduled movies
+router.get('/', (req, res) => {
+    db.getFullSchedule(res);
+})
+
+//Get curremt user schedule
 router.get('/:username/:id', (req, res) => {
     db.getUserSchedule(req.params.id, res);
 })
 
+//Edit scheduled movie by ID
 router.put('/:id', (req, res) => {
     db.editSchedule(req.body, req.params.id, res);
 })
 
+//Delete scheduled movie
 router.delete('/:id', (req, res) => {
     db.deleteScheduled(req.params.id, res)
 })
 
+//Send schedule via SMS
 router.post('/send', (req, res) => {
     const { number, text } = req.body;
 
