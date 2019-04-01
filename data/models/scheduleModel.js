@@ -73,5 +73,7 @@ module.exports = {
                  .catch(err => {
                     res.status(500).json({ error: err, message: "The scheduled movie could not be deleted.", id: id });
                  })
-    }
+    },
+
+    
 }
