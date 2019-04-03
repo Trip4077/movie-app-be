@@ -95,5 +95,9 @@ module.exports = {
                 .catch(err => {
                 res.status(500).json({ error: err, message: "The user could not be deleted." });
                 });
+    },
+
+    findBy: filter => {
+        return db('users').where(filter);
     }
 }

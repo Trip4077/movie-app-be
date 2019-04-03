@@ -2,14 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 const db = require('../data/models/userModel');
-
-//ADD NEW USER
-router.post('/', (req, res) => {
-    db.addUser(req.body, res);
-});
-
+const restrict = require('./auth/auth-middleware');
 //GET ALL USERS
-router.get('/', (req, res) => {
+router.get('/', restrict, (req, res) => {
     db.getUsers(res)
 })
 
