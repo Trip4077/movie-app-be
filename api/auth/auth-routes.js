@@ -32,8 +32,9 @@ router.post('/register', (req, res) => {
 
 
 router.post('/login', (req, res) => {
+   
     let { username, password } = req.body;
-
+    
     db.findBy({ username })
         .first()
         .then(user => {
@@ -42,7 +43,8 @@ router.post('/login', (req, res) => {
                 
                 res.status(200).json({
                     message: `Welcome ${user.username}`,
-                    token
+                    token,
+                    user
                 });
             } else {
                 res.status(401).json({ message: 'Invalid Credentials' })
