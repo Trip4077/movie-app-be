@@ -41,7 +41,7 @@ module.exports = {
             if(favorite.length > 0) {
                 res.status(200).json(favorite)
             } else {
-                res.status(404).json({ message: "The list with the specified ID does not exist." })
+                res.status(200).json({ message: "No Favorites Found" })
             }
         })
         .catch(err => {

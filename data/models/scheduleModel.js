@@ -38,7 +38,7 @@ module.exports = {
                      if(schedule.length) {
                          res.status(200).json(schedule);
                      } else {
-                         res.status(404).json({ message: `the schedule with user id:${id} could not be found` })
+                         res.status(200).json({ message: `Nothing Scheduled` })
                      }
                  })
                  .catch(err => {
