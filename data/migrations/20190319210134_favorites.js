@@ -8,7 +8,6 @@ exports.up = function(knex, Promise) {
         tbl.string('imdbID', 255)
         tbl.string('Title', 255)
             .notNullable()
-            .unique()
         tbl.integer('user_id')
             .references('id')
             .inTable('users')
