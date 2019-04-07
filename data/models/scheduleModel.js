@@ -11,7 +11,8 @@ module.exports = {
               .then(id => {
                   res.status(201).json(id[0]);
               })
-              .catch(rr => {
+              .catch(err => {
+                  console.log(err)
                   res.status(500).json({ err: err, message: 'There was a problem :/'});
               })
         } else {

@@ -52,7 +52,7 @@ module.exports = {
 
     //Add new Favorite
     addFavorite: (movie, res) => {
-
+        console.log(movie)
         if(movie.Title && movie.user_id) {
             db.insert(movie)
               .into('favorites')

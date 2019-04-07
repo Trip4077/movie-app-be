@@ -20,6 +20,7 @@ router.get('/:id', (req, res) => {
 
 //Add to Favorite List
 router.post('/', (req, res) => {
+    console.log(req.body);
     db.addFavorite(req.body, res);
 })
 
