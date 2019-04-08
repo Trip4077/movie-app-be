@@ -6,6 +6,7 @@ const router = express.Router();
 const Nexmo = require('nexmo');
 const db = require('../data/models/scheduleModel');
 
+//Configuration for Nexmo SMS service
 const nexmoConfig = new Nexmo({
     apiKey: process.env.enter,
     apiSecret: process.env.shh
@@ -36,7 +37,7 @@ router.delete('/:id', (req, res) => {
     db.deleteScheduled(req.params.id, res)
 })
 
-//Send schedule via SMS
+//Expects { number-str, tex-str } to send SMS to user phone
 router.post('/send', (req, res) => {
     const { number, text } = req.body;
 
