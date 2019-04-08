@@ -5,6 +5,7 @@ const db = knex(knexConfig.development);
 
 module.exports = {
 
+    //Query All Favorites from favorites table
     getFavorites: res => {
         return db.select('*')
                 .from('favorites')
@@ -16,7 +17,8 @@ module.exports = {
                     res.status(404).json({ error: err, message: "Could not get Users" })
                 })
     },
-    
+
+    //Query Single Favorite based on favorite id
     getFavoritesById: (id, res) => {
         db('favorites')
         .where({ id })
@@ -33,6 +35,7 @@ module.exports = {
       })
     },
 
+    //Query All Favorites matching user_id
     getFavoritesByUserId: (id, res) => {
         return db.select('*')
           .from('favorites')
@@ -50,7 +53,18 @@ module.exports = {
         })
     },
 
-    //Add new Favorite
+    /*
+        Expects: 
+
+            { Poster-str, 
+              Type-str, 
+              Year-str, 
+              imdbID-str, 
+              Title-str, 
+              user_id-int } 
+
+        to add Movie to Favorites
+    */
     addFavorite: (movie, res) => {
         console.log(movie)
         if(movie.Title && movie.user_id) {
@@ -67,6 +81,7 @@ module.exports = {
         }
     },
 
+    //Delete A Favorite Movie based on favorite id
     deleteFavorite: (id, res) => {
         return db('favorites')
                 .where({ id })
