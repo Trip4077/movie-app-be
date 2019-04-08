@@ -4,6 +4,16 @@ const knexConfig = require('../../knexfile');
 const db = knex(knexConfig.development);
 
 module.exports = {
+    /* 
+        Expects: 
+            { imdb-str, 
+            date-str, 
+            readTime-str, 
+            compareTime-str, 
+            title-str, 
+            user_id-int }
+        To Schedule A Reminder
+    */
     scheduleMovie: (movie, res) => {
         if(movie.compareTime && movie.readTime) {
             db.insert(movie)
@@ -20,6 +30,7 @@ module.exports = {
         }
     },
 
+    //Query the full list of scheduled reminders
     getFullSchedule: res => {
         return db.select('*')
                 .from('schedules')
@@ -31,6 +42,7 @@ module.exports = {
                 })
     },
 
+    //Get all scheduled reminders based on user_id
     getUserSchedule: (id, res) => {
         return db.select('*')
                  .from('schedules')
@@ -47,6 +59,7 @@ module.exports = {
                  })
     },
 
+    //Edit scheduled reminder based on schedule id and changes passed in
     editSchedule: (edit, id, res) => {
         db('schedules')
           .where({ id })
@@ -59,6 +72,7 @@ module.exports = {
           })
     },
 
+    //Delete scheduled reminder based on schedule id
     deleteScheduled: (id, res) => {
         return db('schedules')
                  .where({ id })
