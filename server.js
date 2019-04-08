@@ -18,6 +18,7 @@ server.use('/api', routes);
 
 let intervalID;
 
+//Run Schedule Check for Sending SMS Notifications every 5s
 const compareCycle = () => {
     intervalID = setInterval(() => {
         db.select('*')
