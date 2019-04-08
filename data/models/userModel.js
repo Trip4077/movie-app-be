@@ -6,6 +6,7 @@ const Fdb = require('./favoritesModel');
 
 module.exports = {
 
+    //Get All Users from users table
     getUsers: res => {
         return db.select(
                             'fullname as name', 
@@ -28,6 +29,7 @@ module.exports = {
                     })
     },
 
+    //Get Logged In User from users table wiht favorites by user_id
     getUser: (id, res) => {
         const favorites = Fdb.getFavoritesById(id, res);
     
@@ -46,6 +48,15 @@ module.exports = {
                     })
     },
 
+    /*
+        Expects:
+            { fullname-str,
+              username-str,
+              password-str,
+              number-str,
+              age-int }
+        to Create User
+    */
     addUser: (user, res) => {
         if(user.fullname && user.password && user.username && user.age) {
             db.insert(user)
@@ -61,6 +72,7 @@ module.exports = {
         }
     },
 
+    //Update User Information based on Changes Passed In
     editUser: (changes, id, res) => {
         if(changes.fullname || changes.username || changes.password || changes.age) {
             db('users')
@@ -81,6 +93,7 @@ module.exports = {
         }
     },
 
+    //Delete User Based on User id
     deleteUser: (id, res) => {
         return db('users')
                 .where({ id })
