@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 
 const db = require('../../data/models/userModel');
 
+//Function for the generation and configuation of a new JWT for logged in users
 const genToken = user => {
     const payload = {
         subject: user.id,
@@ -21,6 +22,7 @@ const genToken = user => {
     return jwt.sign(payload, secret, options);
 }
 
+//Expects { fullname-str, username-str, password-str, number-str, age-int } to create new user
 router.post('/register', (req, res) => {
     let user = req.body;
     const hash = bcrypt.hashSync(user.password, 8);
@@ -30,7 +32,7 @@ router.post('/register', (req, res) => {
     db.addUser(user, res);
 });
 
-
+//Expects { username-str, password-str } to authenticate and generate user token
 router.post('/login', (req, res) => {
    
     let { username, password } = req.body;

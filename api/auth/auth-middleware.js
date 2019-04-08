@@ -2,6 +2,11 @@ require('dotenv').config();
 
 const jwt = require('jsonwebtoken');
 
+/*
+    Authentication middleware that expects an authorization JWT to be sent via header,
+    and then verifies the user before proceeding
+*/
+
 module.exports = (req, res, next) => {
     const token = req.headers.authorization;
 
