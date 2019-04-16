@@ -25,13 +25,13 @@ const compareCycle = () => {
             .from('schedules')
             .then(schedules => {
                     schedules.map(schedule => {
-                    //SMS.compareDateTime(schedule);
+                    SMS.compareDateTime(schedule);
                 });
             })
             .catch(err => {
                 console.log(err)
             })
-    }, 5000); 
+    }, 60000); 
 }
 
 compareCycle()

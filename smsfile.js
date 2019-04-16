@@ -1,5 +1,6 @@
 const moment = require('moment');
 const Nexmo = require('nexmo');
+const db = require('./data/models/userModel');
 
 const nexmoConfig = new Nexmo({
     apiKey: process.env.enter,
@@ -7,29 +8,43 @@ const nexmoConfig = new Nexmo({
 }, { debuh: true });
 
 const sendSms = movie => {
-    const textInfo = {
-        text: `${movie.title} is scheduled at ${movie.readTime} on ${movie.date}`,
-        number: '12764691994'
-    }
+    id = { id: movie.user_id }
 
-    nexmoConfig.message.sendSms(
-        '12153150647', textInfo.number, textInfo.text, { type: 'unicode' },
-        (err, res) => {
-            if(err) {
-                console.log(err)
-            } else {
-                console.dir(res)
+    let userNumber; 
+    db.findBy(id)
+        .then(res => {
+            userNumber = res[0].number;
+            console.log(userNumber);
+
+            const textInfo = {
+                text: `${movie.title} is scheduled at ${movie.readTime} on ${movie.date}`,
+                number: userNumber
             }
-        }
-    )
+
+                    
+            nexmoConfig.message.sendSms(
+                '12153150647', textInfo.number, textInfo.text, { type: 'unicode' },
+                (err, res) => {
+                    if(err) {
+                        console.log(err)
+                    } else {
+                        //console.dir(res)
+                    }
+                }
+            );
+        })
+        .catch(err => {
+            console.log('error:', err);
+        });
 }
 
 module.exports = {
     compareDateTime: schedule => {
         if(schedule.date === (new Date().toDateString())
-            && schedule.compareTime === moment().format('HH:mm')) {                
-            console.log(schedule);
+            && schedule.compareTime === moment().format('HH:mm')) {  
+
             sendSms(schedule);
+
         } else {
             return;
         }
