@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const db = require('../data/models/userModel');
-const restrict = require('./auth/auth-middleware');
+const db = require('../../data/models/userModel');
+const restrict = require('../auth/auth-middleware');
 //GET ALL USERS
 router.get('/', restrict, (req, res) => {
     db.getUsers(res)

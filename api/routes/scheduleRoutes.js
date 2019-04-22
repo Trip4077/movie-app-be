@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 const Nexmo = require('nexmo');
-const db = require('../data/models/scheduleModel');
+const db = require('../../data/models/scheduleModel');
 
 //Configuration for Nexmo SMS service
 const nexmoConfig = new Nexmo({

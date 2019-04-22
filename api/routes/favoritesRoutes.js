@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const db = require('../data/models/favoritesModel');
+const db = require('../../data/models/favoritesModel');
 
 //Get All Favorites
 router.get('/', (req, res) => {

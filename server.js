@@ -1,5 +1,5 @@
 const express = require('express');
-const routes = require('./api/routes');
+const routes = require('./api/routes/routes');
 
 const helmet = require('helmet');
 const logger = require('morgan');
