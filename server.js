@@ -13,7 +13,7 @@ const db = knex(knexConfig.development);
 
 const SMS = require('./smsfile');
 
-server.use(express.json(), helmet(), cors(), logger('dev'));
+server.use(express.json(), helmet(), cors());
 server.use('/api', routes);
 
 let intervalID;
